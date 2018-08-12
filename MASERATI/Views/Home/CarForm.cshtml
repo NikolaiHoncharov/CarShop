@@ -1,0 +1,24 @@
+﻿@model IEnumerable<MASERATI.Models.Car>
+
+<div class="buy-form">
+    <div class="image-car">
+        <img src="~/images/Form.png" alt="Форма" />
+    </div>
+    <div class="forms">
+        @using (Html.BeginForm("Index", "Home", "Post"))
+        {
+            <fieldset>
+                <legend>Оформление заказа</legend>
+
+                @Html.TextBox("name", null, new { @placeholder = "Введите ваше имя", required = "required" })<br />
+                @Html.TextBox("phone", null, new { @placeholder = "+38(0xx)(xxx)-(xxxx)", required = "required" })<br />
+                <select name="Car">
+                @foreach (var item in Model){
+                    <option value= @item.CarId >@item.model</option>
+                }
+                </select><br />
+                <input type="submit" name="buy" value="Купить" />
+            </fieldset>
+        }
+    </div>
+</div>

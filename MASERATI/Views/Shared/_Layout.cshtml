@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title> @ViewBag.Title </title>
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <header class="header">
+        <div class="image">
+            <img src="~/images/Header.png" alt="">
+        </div>
+    </header>
+    <main class="main">
+        <div class="container">
+            <div class="navigation">
+                <nav>
+                    <ul>
+                        <li><a href="~/Home/Index"><img src="~/images/Logo.jpg" alt=""></a></li>
+                        <li> @Html.ActionLink("Ghibli", "Cars", "Home", new { id = 1 }, new { @class = "link" }) </li>
+                        <li>  @Html.ActionLink("Quattroporte", "Cars", "Home", new { id = 2 }, new { @class = "link" }) </li>
+                        <li> @Html.ActionLink("GranTurismo", "Cars", "Home", new { id = 3 }, new { @class = "link" }) </li>
+                    </ul>
+                </nav>
+            </div>
+
+
+            @RenderBody()
+        
+        @Scripts.Render("~/Scripts/js")
+        </div>
+        
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <h4>Copyright © 2018 Author of the layout N. Goncharov</h4>
+        </div>
+    </footer>
+   
+</body>
+</html>

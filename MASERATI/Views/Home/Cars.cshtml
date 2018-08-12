@@ -1,0 +1,22 @@
+﻿@model IEnumerable<MASERATI.Models.FotoCar>
+@{
+    ViewBag.Title = ViewBag.Car;
+}
+<div class="list-img">
+    <div id="main_title">
+        <h2>@ViewBag.Car</h2>
+    </div>
+    <div class="image">
+        <div class="big_pic">
+            <img src=@Model.FirstOrDefault().path id="preview" alt="Ghibli" />
+        </div>
+        <div class="small_pic">
+            @foreach (var item in Model)
+            {
+                <div>
+                    <img onclick="setImg(this.src)" src=@item.path alt="Car" />
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<MASERATI.Models.Car>
+
+@{
+    ViewBag.Title = "MASERATI";
+}
+
+<div class="contant">
+    <h1>Maserati</h1>
+    <div class="cars">
+        @foreach (var item in Model.ToList())
+        {
+            <div class="card">
+                <img src="@item.pathlog" alt="">
+                <p class="type"> @item.type </p>
+                <h2> @item.model  </h2>
+                <p>
+                    @item.description
+                </p>
+                @Html.ActionLink("Перейти >>", "Cars", "Home", new { id = item.CarId }, new { @class = "link" })
+            </div>
+
+        }
+    </div>
+
+    @Html.Partial("CarForm", Model)
+</div>
+
+
+
