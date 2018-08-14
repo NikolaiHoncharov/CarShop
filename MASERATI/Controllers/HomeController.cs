@@ -1,7 +1,9 @@
 ﻿using MASERATI.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -25,22 +27,27 @@ namespace MASERATI.Controllers
         [HttpPost]
         public string Index(string name, string phone, int Car)
         {
-            db.Orders.Add(new Order { name = name, phone = phone, CarId = Car });
-            db.SaveChanges();
-            return $"Добрый день, {name}, ваш заказ принят в ближайшее время вам позвонят по указанному номеру {phone}!";
+            if (ModelState.IsValid)
+            {
+                db.Orders.Add(new Order { name = name, phone = phone, CarId = Car });
+                db.SaveChanges();
+                return $"Добрый день, {name}, ваш заказ принят в ближайшее время вам позвонят по указанному номеру {phone}!";
+            }
+            else
+                return $"Ошибка ввода";
         }
 
        
         [OutputCache(Duration = 60)]
-        public ActionResult Cars(int id=1)
+        public async Task<ActionResult> Cars(int id=1)
         {
-            ViewBag.Car = (from f in db.Cars
+            ViewBag.Car =  (from f in db.Cars
                              where f.CarId == id
                              select f.model).FirstOrDefault();
 
-            return View((from f in db.fotoCars
+            return View(await (from f in db.fotoCars
                          where f.CarId == id
-                         select f).ToList());
+                         select f).ToListAsync());
         }
 
         //Partial Views

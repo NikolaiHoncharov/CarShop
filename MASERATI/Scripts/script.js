@@ -8,17 +8,17 @@ function setImg(selected_url){
 /*Ajax jQuery*/
 $(document).on('submit','form', (e)=>{
     e.preventDefault();
-    var UserName=$('#name').val();
+    var UserName = $('#name').val();
     var UserTel= $('#phone').val();
-    var Car=$('select').val();
+    var CarId=$('select').val();
     //Валидация введенных данных.
-    if(UserName.length>0)
+    if (UserName.length > 2)
     {
     //Проверяем номер телефона
         var regular = /^\+38[0-9]{10}/;
         if (regular.test(UserTel) == true)
         {
-            SubmitForm(UserName,UserTel,Car);
+            SubmitForm(UserName, UserTel, CarId);
         }
         else
         {
@@ -33,12 +33,12 @@ $(document).on('submit','form', (e)=>{
 });
 
 /*Ajax jQuery*/
-function SubmitForm(name,tel,car)
+function SubmitForm(name, tel, CarId)
 {
    $.ajax({
   method: "POST",
   url: "/Home/Index",
-  data: { name: name, phone: tel, Car:car }
+  data: { name: name, phone: tel, Car: CarId }
 })
   .done(function( msg ) {
     alert( msg );
